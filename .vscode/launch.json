@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "UI Debug",
+            "program": "${workspaceFolder}/selfdrive/ui/_ui",
+            "args": [],
+            "env":
+                { 
+                    "QT_DBL_CLICK_DIST": "150", 
+                    "LD_LIBRARY_PATH": "/system/lib64:$LD_LIBRARY_PATH",
+                    "LIBGL_ALWAYS_SOFTWARE": "1",
+                }
+            ,
+            "initCommands": [
+                "process handle SIGUSR2 -n true -p true -s false"
+            ],
+            "cwd": "${workspaceFolder}/selfdrive/ui"
+        }
+    ]
+}

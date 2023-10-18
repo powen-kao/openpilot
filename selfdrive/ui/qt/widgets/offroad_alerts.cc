@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QtGlobal>
 
 #include "common/util.h"
 #include "system/hardware/hw.h"
@@ -67,6 +68,8 @@ int OffroadAlert::refresh() {
   if (alerts.empty()) {
     QString json = util::read_file("../controls/lib/alerts_offroad.json").c_str();
     QJsonObject obj = QJsonDocument::fromJson(json.toUtf8()).object();
+
+    Q_ASSERT_X(!obj.empty(), __FUNCTION__, "Empty json object. Maybe asset is missing?");
 
     // descending sort labels by severity
     std::vector<std::pair<std::string, int>> sorted;
